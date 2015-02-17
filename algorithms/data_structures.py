@@ -1,7 +1,4 @@
 
-
-
-
 class Stack:
     def __init__(self, stack=[]):
         self.stack = stack
@@ -36,30 +33,39 @@ class Stack:
 
     @property
     def is_empty(self):
-        return True if len(self.stack) == 0 else False
+        return len(self.stack) == 0
 
 class StackLinked:
     def __init__(self):
-        self.node = None
+        self.first = None
 
-    def push(self, item):
-        self.stack.append(item)
+    def push(self, data):
+        self.first = Node(data, next_node=self.first)
 
     def pop(self):
-        if len(self.stack) > 0:
-            removed = self.stack[-1]
-            self.stack = self.stack[:-1]
-            return removed
+        if self.first is None:
+            return
+        old_first = self.first
+        self.first = self.first.next_node
+        return old_first.data
 
     @property
     def size(self):
-        return len(self.stack)
+        if self.first is None:
+            return 0
+
+        length = 1
+        cur = self.first
+        while cur.next_node is not None:
+            length += 1
+            cur = cur.next_node
+        return length
 
     @property
     def is_empty(self):
-        return True if len(self.stack) == 0 else False
+        return self.first is None
 
-class Link:
-    def __init__(self, data, nextlink=None):
+class Node:
+    def __init__(self, data, next_node=None):
         self.data = data
-        self.nextlink = nextlink
+        self.next_node = next_node
