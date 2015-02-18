@@ -24,7 +24,7 @@ class Stack:
     def pop(self):
         if len(self.stack) > 0:
             removed = self.stack[-1]
-            self.stack = self.stack[:-1]
+            self.stack = del(self.stack[-1])
             return removed
 
     @property
