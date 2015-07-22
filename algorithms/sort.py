@@ -14,10 +14,15 @@ def selection(numbers):
             numbers = swap(numbers, i, current_min)
     return numbers
 
-def insertion(numbers):
-    for i, _ in enumerate(numbers):
+def insertion(numbers, width=1):
+    for i in range(0, len(numbers)):
         j = i
-        while j > 0 and numbers[j] < numbers[j-1]:
-            numbers = swap(numbers, j, j-1)
-            j -= 1
+        while j > width-1 and numbers[j] < numbers[j-width]:
+            numbers = swap(numbers, j, j-width)
+            j -= width
     return numbers
+
+def shell(numbers):
+    numbers = insertion(numbers, 4)
+    numbers = insertion(numbers, 3)
+    return insertion(numbers)
