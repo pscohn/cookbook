@@ -22,6 +22,9 @@ class TestSort(unittest.TestCase):
         self.assertEqual(sort.insertion(self.numbers, width=7), [4, 0, 6, 5, 9, 1, 2, 7, 3, 8])
 #        self.assertEqual(sort.shell(self.numbers), self.correct)
 
+    def test_insertion(self):
+        self.assertEqual(sort.merge(self.numbers), self.correct)
+
 if __name__ == '__main__':
     unittest.main()
 

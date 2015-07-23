@@ -1,3 +1,5 @@
+import math
+
 def swap(numbers, i, j):
     temp = numbers[i]
     numbers[i] = numbers[j]
@@ -23,6 +25,31 @@ def insertion(numbers, width=1):
     return numbers
 
 def shell(numbers):
+    #TODO
     numbers = insertion(numbers, 4)
     numbers = insertion(numbers, 3)
     return insertion(numbers)
+
+def merge(numbers):
+    if len(numbers) == 1 or numbers == []:
+        return numbers
+
+    mid = math.floor(len(numbers) / 2)
+    split1 = numbers[:mid]
+    split2 = numbers[mid:]
+    sorted1 = merge(split1)
+    sorted2 = merge(split2)
+    print('sorted:', sorted1, sorted2)
+
+    i = 0
+    j = 0
+    final = []
+    while i < len(sorted1) or j < len(sorted2):
+        if i<len(sorted1) and (j == len(sorted2) or sorted1[i] <= sorted2[j]):
+            final.append(sorted1[i])
+            i += 1
+        else:
+            final.append(sorted2[j])
+            j += 1
+    print('final:', final)
+    return final
