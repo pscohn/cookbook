@@ -39,7 +39,6 @@ def merge(numbers):
     split2 = numbers[mid:]
     sorted1 = merge(split1)
     sorted2 = merge(split2)
-    print('sorted:', sorted1, sorted2)
 
     i = 0
     j = 0
@@ -51,5 +50,21 @@ def merge(numbers):
         else:
             final.append(sorted2[j])
             j += 1
-    print('final:', final)
     return final
+
+def quicksort_partition(numbers):
+    lo = numbers[0]
+    i = 1
+    j = len(numbers) - 1
+    while i <= j:
+        if numbers[i] <= lo:
+            i += 1
+        elif numbers[j] >= lo:
+            j -= 1
+        else:
+            numbers = swap(numbers, i, j)
+            i += 1
+            j -= 1
+
+    numbers = swap(numbers, 0, j)
+    return numbers

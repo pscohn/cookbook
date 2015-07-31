@@ -25,6 +25,8 @@ class TestSort(unittest.TestCase):
     def test_insertion(self):
         self.assertEqual(sort.merge(self.numbers), self.correct)
 
+    def test_quicksort_partition(self):
+        self.assertEqual(sort.quicksort_partition(self.numbers), [1, 3, 0, 2, 4, 9, 5, 7, 8, 6])
+
 if __name__ == '__main__':
     unittest.main()
-
